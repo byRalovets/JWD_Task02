@@ -1,6 +1,12 @@
 package by.ralovets.epamcourse.entity.impl;
 
 import by.ralovets.epamcourse.entity.Appliance;
+import by.ralovets.epamcourse.entity.criteria.SearchCriteria;
+
+import java.util.HashMap;
+
+import static java.util.Objects.requireNonNull;
+import static by.ralovets.epamcourse.entity.criteria.SearchCriteria.Oven.*;
 
 public class Oven implements Appliance {
 
@@ -11,8 +17,17 @@ public class Oven implements Appliance {
     private double height;
     private double width;
 
-    public Oven() {
+    public Oven(HashMap<SearchCriteria.ApplianceCriteria, Object> params) {
+        powerConsumption = (Integer) requireNonNull(
+                params.get(POWER_CONSUMPTION));
+        weight = (Integer) requireNonNull(params.get(WEIGHT));
+        capacity = (Integer) requireNonNull(params.get(CAPACITY));
+        depth = (Integer) requireNonNull(params.get(DEPTH));
+        height = (Double) requireNonNull(params.get(HEIGHT));
+        width = (Double) requireNonNull(params.get(WIDTH));
     }
+
+    public Oven() {}
 
     public int getPowerConsumption() {
         return powerConsumption;

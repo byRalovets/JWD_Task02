@@ -1,20 +1,32 @@
 package by.ralovets.epamcourse.entity.impl;
 
 import by.ralovets.epamcourse.entity.Appliance;
+import by.ralovets.epamcourse.entity.criteria.SearchCriteria;
 
 import java.util.HashMap;
+
+import static java.util.Objects.requireNonNull;
+import static by.ralovets.epamcourse.entity.criteria.SearchCriteria.Laptop.*;
 
 public class Laptop implements Appliance {
 
     private double batteryCapacity;
-    private String os;
     private int memoryRom;
     private int systemMemory;
-    private double cpu;
     private double displayInches;
+    private String os;
+    private double cpu;
 
-    public Laptop() {
+    public Laptop(HashMap<SearchCriteria.ApplianceCriteria, Object> params) {
+        batteryCapacity = (Double) requireNonNull(params.get(BATTERY_CAPACITY));
+        memoryRom = (Integer) requireNonNull(params.get(MEMORY_ROM));
+        systemMemory = (Integer) requireNonNull(params.get(SYSTEM_MEMORY));
+        displayInches = (Double) requireNonNull(params.get(DISPLAY_INCHES));
+        cpu = (Double) requireNonNull(params.get(CPU));
+        os = (String) requireNonNull(params.get(OS));
     }
+
+    public Laptop() {}
 
     public double getBatteryCapacity() {
         return batteryCapacity;
@@ -63,4 +75,5 @@ public class Laptop implements Appliance {
     public void setDisplayInches(double displayInches) {
         this.displayInches = displayInches;
     }
+
 }

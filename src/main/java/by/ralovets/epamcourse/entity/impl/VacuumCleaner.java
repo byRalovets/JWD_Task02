@@ -1,18 +1,34 @@
 package by.ralovets.epamcourse.entity.impl;
 
 import by.ralovets.epamcourse.entity.Appliance;
+import by.ralovets.epamcourse.entity.criteria.SearchCriteria;
+
+import java.util.HashMap;
+
+import static by.ralovets.epamcourse.entity.criteria.SearchCriteria.VacuumCleaner.*;
+import static java.util.Objects.requireNonNull;
 
 public class VacuumCleaner implements Appliance {
 
     private int powerConsumption;
-    private int weight;
-    private int capacity;
-    private int depth;
-    private int height;
-    private int width;
+    private String filterType;
+    private String bagType;
+    private String wandType;
+    private boolean motorSpeedRegulation;
+    private int cleaningWidth;
 
-    public VacuumCleaner() {
+    public VacuumCleaner(HashMap<SearchCriteria.ApplianceCriteria, Object> params) {
+        powerConsumption = (Integer) requireNonNull(
+                params.get(POWER_CONSUMPTION));
+        filterType = (String) requireNonNull(params.get(FILTER_TYPE));
+        bagType = (String) requireNonNull(params.get(BAG_TYPE));
+        wandType = (String) requireNonNull(params.get(WAND_TYPE));
+        motorSpeedRegulation = (Boolean) requireNonNull(
+                params.get(MOTOR_SPEED_REGULATION));
+        cleaningWidth = (Integer) requireNonNull(params.get(CLEANING_WIDTH));
     }
+
+    public VacuumCleaner() {}
 
     public int getPowerConsumption() {
         return powerConsumption;
@@ -22,43 +38,43 @@ public class VacuumCleaner implements Appliance {
         this.powerConsumption = powerConsumption;
     }
 
-    public int getWeight() {
-        return weight;
+    public String getFilterType() {
+        return filterType;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setFilterType(String filterType) {
+        this.filterType = filterType;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getBagType() {
+        return bagType;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setBagType(String bagType) {
+        this.bagType = bagType;
     }
 
-    public int getDepth() {
-        return depth;
+    public String getWandType() {
+        return wandType;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
+    public void setWandType(String wandType) {
+        this.wandType = wandType;
     }
 
-    public int getHeight() {
-        return height;
+    public boolean getMotorSpeedRegulation() {
+        return motorSpeedRegulation;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setMotorSpeedRegulation(boolean motorSpeedRegulation) {
+        this.motorSpeedRegulation = motorSpeedRegulation;
     }
 
-    public int getWidth() {
-        return width;
+    public int getCleaningWidth() {
+        return cleaningWidth;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setCleaningWidth(int cleaningWidth) {
+        this.cleaningWidth = cleaningWidth;
     }
 }

@@ -1,6 +1,7 @@
 package by.ralovets.epamcourse.service.impl;
 
 import by.ralovets.epamcourse.dao.ApplianceDAO;
+import by.ralovets.epamcourse.dao.DAOException;
 import by.ralovets.epamcourse.dao.DAOFactory;
 import by.ralovets.epamcourse.entity.Appliance;
 import by.ralovets.epamcourse.entity.criteria.Criteria;
@@ -9,7 +10,7 @@ import by.ralovets.epamcourse.service.validation.Validator;
 
 public class ApplianceServiceImpl implements ApplianceService {
 
-    public Appliance find(Criteria criteria) {
+    public Appliance find(Criteria criteria) throws DAOException {
         if (!Validator.criteriaValidator(criteria)) {
             return null;
         }
