@@ -15,8 +15,8 @@ public class Oven implements Appliance {
     private int weight;
     private int capacity;
     private int depth;
-    private double height;
-    private double width;
+    private int height;
+    private int width;
 
     public Oven(HashMap<String, String> params) throws ApplianceCreationException {
         try {
@@ -28,9 +28,9 @@ public class Oven implements Appliance {
                     requireNonNull(params.get(CAPACITY.toString())));
             depth = Integer.parseInt(
                     requireNonNull(params.get(DEPTH.toString())));
-            height = Double.parseDouble(
+            height = Integer.parseInt(
                     requireNonNull(params.get(HEIGHT.toString())));
-            width = Double.parseDouble(
+            width = Integer.parseInt(
                     requireNonNull(params.get(WIDTH.toString())));
         } catch (NumberFormatException | NullPointerException e) {
             throw new ApplianceCreationException(e.getMessage());
@@ -72,19 +72,19 @@ public class Oven implements Appliance {
         this.depth = depth;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
@@ -135,5 +135,19 @@ public class Oven implements Appliance {
                 && depth == oven.depth
                 && height == oven.height
                 && width == oven.width;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + powerConsumption;
+        result = prime * result + weight;
+        result = prime * result + height;
+        result = prime * result + width;
+        result = prime * result + capacity;
+        result = prime * result + depth;
+
+        return result;
     }
 }

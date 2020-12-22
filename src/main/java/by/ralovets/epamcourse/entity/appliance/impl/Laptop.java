@@ -14,9 +14,9 @@ public class Laptop implements Appliance {
     private int batteryCapacity;
     private int memoryRom;
     private int systemMemory;
-    private double displayInches;
+    private int displayInches;
     private String os;
-    private double cpu;
+    private int cpu;
 
     public Laptop(HashMap<String, String> params) throws ApplianceCreationException {
 
@@ -27,9 +27,9 @@ public class Laptop implements Appliance {
                     requireNonNull(params.get(MEMORY_ROM.toString())));
             systemMemory = Integer.parseInt(
                     requireNonNull(params.get(SYSTEM_MEMORY.toString())));
-            displayInches = Double.parseDouble(
+            displayInches = Integer.parseInt(
                     requireNonNull(params.get(DISPLAY_INCHES.toString())));
-            cpu = Double.parseDouble(requireNonNull(params.get(CPU.toString())));
+            cpu = Integer.parseInt(requireNonNull(params.get(CPU.toString())));
             os = requireNonNull(params.get(OS.toString()));
         } catch (NumberFormatException | NullPointerException e) {
             throw new ApplianceCreationException(e.getMessage());
@@ -71,19 +71,19 @@ public class Laptop implements Appliance {
         this.systemMemory = systemMemory;
     }
 
-    public double getCpu() {
+    public int getCpu() {
         return cpu;
     }
 
-    public void setCpu(double cpu) {
+    public void setCpu(int cpu) {
         this.cpu = cpu;
     }
 
-    public double getDisplayInches() {
+    public int getDisplayInches() {
         return displayInches;
     }
 
-    public void setDisplayInches(double displayInches) {
+    public void setDisplayInches(int displayInches) {
         this.displayInches = displayInches;
     }
 
@@ -118,11 +118,6 @@ public class Laptop implements Appliance {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -139,5 +134,19 @@ public class Laptop implements Appliance {
                 && displayInches == laptop.displayInches
                 && os.equals(laptop.os)
                 && cpu == laptop.cpu;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + batteryCapacity;
+        result = prime * result + memoryRom;
+        result = prime * result + systemMemory;
+        result = prime * result + displayInches;
+        result = prime * result + cpu;
+        result = prime * result + os.hashCode();
+
+        return result;
     }
 }

@@ -119,4 +119,17 @@ public class Speakers implements Appliance {
                 && frequencyRangeEnd == speakers.frequencyRangeEnd
                 && cordLength == speakers.cordLength;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + powerConsumption;
+        result = prime * result + numberOfSpeakers;
+        result = prime * result + cordLength;
+        result = prime * result + Double.valueOf(frequencyRangeStart).hashCode();
+        result = prime * result + Double.valueOf(frequencyRangeEnd).hashCode();
+
+        return result;
+    }
 }

@@ -132,4 +132,18 @@ public class VacuumCleaner implements Appliance {
                 && motorSpeedRegulation == vacuumCleaner.motorSpeedRegulation
                 && cleaningWidth == vacuumCleaner.cleaningWidth;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + powerConsumption;
+        result = prime * result + (motorSpeedRegulation ? 1 : 0);
+        result = prime * result + cleaningWidth;
+        result = prime * result + ((filterType == null) ? 0 : filterType.hashCode());
+        result = prime * result + ((wandType == null) ? 0 : wandType.hashCode());
+        result = prime * result + ((bagType == null) ? 0 : bagType.hashCode());
+
+        return result;
+    }
 }

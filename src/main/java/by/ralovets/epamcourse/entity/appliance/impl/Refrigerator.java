@@ -135,4 +135,18 @@ public class Refrigerator implements Appliance {
                 && height == refrigerator.height
                 && width == refrigerator.width;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + powerConsumption;
+        result = prime * result + weight;
+        result = prime * result + height;
+        result = prime * result + width;
+        result = prime * result + Double.valueOf(freezerCapacity).hashCode();
+        result = prime * result + Double.valueOf(overallCapacity).hashCode();
+
+        return result;
+    }
 }

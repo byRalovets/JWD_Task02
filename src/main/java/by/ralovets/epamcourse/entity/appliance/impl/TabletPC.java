@@ -118,4 +118,17 @@ public class TabletPC implements Appliance {
                 && flashMemoryCapacity == tabletPC.flashMemoryCapacity
                 && color.equals(tabletPC.color);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + batteryCapacity;
+        result = prime * result + displayInches;
+        result = prime * result + memoryROM;
+        result = prime * result + flashMemoryCapacity;
+        result = prime * result + ((color == null) ? 0 : color.hashCode());
+
+        return result;
+    }
 }
