@@ -100,4 +100,22 @@ public class TabletPC implements Appliance {
                 "=" +
                 color;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        TabletPC tabletPC = (TabletPC) obj;
+        return batteryCapacity == tabletPC.batteryCapacity
+                && displayInches == tabletPC.displayInches
+                && memoryROM == tabletPC.memoryROM
+                && flashMemoryCapacity == tabletPC.flashMemoryCapacity
+                && color.equals(tabletPC.color);
+    }
 }

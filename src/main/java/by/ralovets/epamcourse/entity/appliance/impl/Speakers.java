@@ -101,4 +101,22 @@ public class Speakers implements Appliance {
                 "=" +
                 cordLength;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Speakers speakers = (Speakers) obj;
+        return powerConsumption == speakers.powerConsumption
+                && numberOfSpeakers == speakers.numberOfSpeakers
+                && frequencyRangeStart == speakers.frequencyRangeStart
+                && frequencyRangeEnd == speakers.frequencyRangeEnd
+                && cordLength == speakers.cordLength;
+    }
 }

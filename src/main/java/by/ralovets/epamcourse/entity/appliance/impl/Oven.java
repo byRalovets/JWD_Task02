@@ -4,6 +4,7 @@ import by.ralovets.epamcourse.entity.appliance.Appliance;
 import by.ralovets.epamcourse.entity.appliance.ApplianceCreationException;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import static by.ralovets.epamcourse.entity.appliance.criteria.SearchCriteria.Oven.*;
 import static java.util.Objects.requireNonNull;
@@ -115,5 +116,24 @@ public class Oven implements Appliance {
                 WIDTH +
                 "=" +
                 width;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Oven oven = (Oven) obj;
+        return powerConsumption == oven.powerConsumption
+                && weight == oven.weight
+                && capacity == oven.capacity
+                && depth == oven.depth
+                && height == oven.height
+                && width == oven.width;
     }
 }

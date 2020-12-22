@@ -2,6 +2,7 @@ package by.ralovets.epamcourse.entity.appliance.impl;
 
 import by.ralovets.epamcourse.entity.appliance.Appliance;
 import by.ralovets.epamcourse.entity.appliance.ApplianceCreationException;
+import by.ralovets.epamcourse.entity.appliance.criteria.Criteria;
 
 import java.util.HashMap;
 
@@ -114,5 +115,29 @@ public class Laptop implements Appliance {
                 CPU +
                 "=" +
                 cpu;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Laptop laptop = (Laptop) obj;
+        return batteryCapacity == laptop.batteryCapacity
+                && memoryRom == laptop.memoryRom
+                && systemMemory == laptop.systemMemory
+                && displayInches == laptop.displayInches
+                && os.equals(laptop.os)
+                && cpu == laptop.cpu;
     }
 }

@@ -116,4 +116,23 @@ public class Refrigerator implements Appliance {
                 "=" +
                 width;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Refrigerator refrigerator = (Refrigerator) obj;
+        return powerConsumption == refrigerator.powerConsumption
+                && weight == refrigerator.weight
+                && freezerCapacity == refrigerator.freezerCapacity
+                && overallCapacity == refrigerator.overallCapacity
+                && height == refrigerator.height
+                && width == refrigerator.width;
+    }
 }

@@ -113,4 +113,23 @@ public class VacuumCleaner implements Appliance {
                 "=" +
                 cleaningWidth;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        VacuumCleaner vacuumCleaner = (VacuumCleaner) obj;
+        return powerConsumption == vacuumCleaner.powerConsumption
+                && filterType.equals(vacuumCleaner.filterType)
+                && bagType.equals(vacuumCleaner.bagType)
+                && wandType.equals(vacuumCleaner.wandType)
+                && motorSpeedRegulation == vacuumCleaner.motorSpeedRegulation
+                && cleaningWidth == vacuumCleaner.cleaningWidth;
+    }
 }
