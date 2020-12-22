@@ -10,6 +10,8 @@ import static java.util.Objects.requireNonNull;
 
 public class TabletPC implements Appliance {
 
+    private static final long serialVersionUUID = -1L;
+
     private int batteryCapacity;
     private int displayInches;
     private int memoryROM;

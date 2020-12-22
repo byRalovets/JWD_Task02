@@ -10,6 +10,8 @@ import static java.util.Objects.requireNonNull;
 
 public class Speakers implements Appliance {
 
+    private static final long serialVersionUUID = -1L;
+
     private int powerConsumption;
     private int numberOfSpeakers;
     private double frequencyRangeStart;

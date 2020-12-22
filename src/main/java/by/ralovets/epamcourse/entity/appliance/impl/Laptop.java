@@ -2,7 +2,6 @@ package by.ralovets.epamcourse.entity.appliance.impl;
 
 import by.ralovets.epamcourse.entity.appliance.Appliance;
 import by.ralovets.epamcourse.entity.appliance.ApplianceCreationException;
-import by.ralovets.epamcourse.entity.appliance.criteria.Criteria;
 
 import java.util.HashMap;
 
@@ -10,6 +9,8 @@ import static by.ralovets.epamcourse.entity.appliance.criteria.SearchCriteria.La
 import static java.util.Objects.requireNonNull;
 
 public class Laptop implements Appliance {
+
+    private static final long serialVersionUUID = -1L;
 
     private int batteryCapacity;
     private int memoryRom;

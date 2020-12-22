@@ -4,12 +4,13 @@ import by.ralovets.epamcourse.entity.appliance.Appliance;
 import by.ralovets.epamcourse.entity.appliance.ApplianceCreationException;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 import static by.ralovets.epamcourse.entity.appliance.criteria.SearchCriteria.Oven.*;
 import static java.util.Objects.requireNonNull;
 
 public class Oven implements Appliance {
+
+    private static final long serialVersionUUID = -1L;
 
     private int powerConsumption;
     private int weight;

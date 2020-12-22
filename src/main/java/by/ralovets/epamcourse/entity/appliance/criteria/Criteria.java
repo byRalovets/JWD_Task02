@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class Criteria {
 
+    private static final long serialVersionUUID = -1L;
+
     private final String groupSearchName;
     private final Map<String, Object> criteria = new HashMap<String, Object>();
 

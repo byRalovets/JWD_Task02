@@ -10,6 +10,8 @@ import static java.util.Objects.requireNonNull;
 
 public class VacuumCleaner implements Appliance {
 
+    private static final long serialVersionUUID = -1L;
+
     private int powerConsumption;
     private String filterType;
     private String bagType;
