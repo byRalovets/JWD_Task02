@@ -1,7 +1,6 @@
-package by.ralovets.epamcourse.entity;
+package by.ralovets.epamcourse.entity.appliance;
 
-import by.ralovets.epamcourse.entity.criteria.SearchCriteria;
-import by.ralovets.epamcourse.entity.impl.*;
+import by.ralovets.epamcourse.entity.appliance.impl.*;
 
 import java.util.HashMap;
 
@@ -12,13 +11,13 @@ public class ApplianceFactory {
     private ApplianceFactory() {
     }
 
-    public ApplianceFactory getInstance() {
+    public static ApplianceFactory getInstance() {
         return instance;
     }
 
     public Appliance getAppliance(
             ApplianceEnum appliance,
-            HashMap<SearchCriteria.ApplianceCriteria, Object> params) {
+            HashMap<String, String> params) throws ApplianceCreationException {
 
         switch (appliance) {
             case LAPTOP:
@@ -34,7 +33,7 @@ public class ApplianceFactory {
             case VACUUM_CLEANER:
                 return new VacuumCleaner(params);
         }
-        throw new IllegalArgumentException();
+        throw new ApplianceCreationException();
     }
 
 }

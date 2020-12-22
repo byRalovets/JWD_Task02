@@ -1,11 +1,12 @@
 package by.ralovets.epamcourse.service;
 
-import by.ralovets.epamcourse.dao.DAOException;
-import by.ralovets.epamcourse.entity.Appliance;
-import by.ralovets.epamcourse.entity.criteria.Criteria;
+import by.ralovets.epamcourse.entity.appliance.Appliance;
+import by.ralovets.epamcourse.entity.appliance.criteria.Criteria;
+
+import java.util.List;
 
 public interface ApplianceService {
 
-    Appliance find(Criteria criteria) throws DAOException;
+    List<Appliance> find(Criteria criteria) throws ServiceException;
 
 }

@@ -2,60 +2,53 @@ package by.ralovets.epamcourse.dao.impl;
 
 import by.ralovets.epamcourse.dao.ApplianceDAO;
 import by.ralovets.epamcourse.dao.DAOException;
-import by.ralovets.epamcourse.entity.Appliance;
-import by.ralovets.epamcourse.entity.criteria.Criteria;
+import by.ralovets.epamcourse.entity.appliance.Appliance;
+import by.ralovets.epamcourse.entity.appliance.parser.ApplianceParser;
+import by.ralovets.epamcourse.entity.appliance.ApplianceSearchFilter;
+import by.ralovets.epamcourse.entity.appliance.criteria.Criteria;
+import by.ralovets.epamcourse.entity.appliance.parser.ApplianceParserException;
+import by.ralovets.epamcourse.entity.appliance.reader.ApplianceReader;
+import by.ralovets.epamcourse.entity.appliance.reader.ApplianceReaderException;
+import by.ralovets.epamcourse.entity.appliance.reader.impl.ApplianceFileReader;
+import by.ralovets.epamcourse.resource.ResourceProvider;
+import by.ralovets.epamcourse.resource.ResourceProviderException;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
 
-    public Appliance find(Criteria criteria) throws DAOException {
+    public List<Appliance> find(Criteria criteria) throws DAOException {
+        ApplianceReader applianceReader;
+        ApplianceSearchFilter searchFilter = new ApplianceSearchFilter(criteria);
+        ApplianceParser applianceParser = new ApplianceParser();
 
-        URL resource = getClass().getClassLoader().getResource("appliances_db.txt");
+        List<String> sourceApplianceData;
+        List<String> filteredApplianceData;
+        List<Appliance> parsedApplianceList;
+        List<Appliance> foundApplianceList = new ArrayList<>();
 
-        if (resource == null) {
-            throw new DAOException();
-        }
-
-        String[] criteriaArray = criteria.toString().split(" : ");
-        String applianceName = criteriaArray[0];
-        String[] finalCriteriaArray = criteriaArray[1].split(", ");
-
-        List<String> appliances = new ArrayList<>();
         try {
-
-            Files.lines(Paths.get(resource.toURI()), StandardCharsets.UTF_8).forEach((s) -> {
-                if (!s.contains(applianceName)) return;
-
-                for (String c : finalCriteriaArray) {
-                    if (!s.contains(c)) return;
-                }
-
-                appliances.add(s);
-            });
-        } catch (URISyntaxException | IOException ignored) {
+            File file = ResourceProvider.getLocalFile("DATABASE");
+            applianceReader = new ApplianceFileReader(file);
+        } catch (ResourceProviderException | ApplianceReaderException e) {
             throw new DAOException();
         }
 
-        for (String a : appliances) {
-            System.out.println(a);
+        while (applianceReader.hasNext()) {
+            sourceApplianceData = applianceReader.next(10);
+            filteredApplianceData = searchFilter.filter(sourceApplianceData);
+
+            try {
+                parsedApplianceList = applianceParser.parse(filteredApplianceData);
+            } catch (ApplianceParserException e) {
+                throw new DAOException();
+            }
+
+            foundApplianceList.addAll(parsedApplianceList);
         }
 
-        return null;
+        return foundApplianceList;
     }
-
-    // you may add your own code here
-
 }
-
-//you may add your own new classes

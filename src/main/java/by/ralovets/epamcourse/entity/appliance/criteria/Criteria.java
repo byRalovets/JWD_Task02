@@ -1,4 +1,4 @@
-package by.ralovets.epamcourse.entity.criteria;
+package by.ralovets.epamcourse.entity.appliance.criteria;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class Criteria {
         }
 
         Criteria anotherCriteria = (Criteria) obj;
-        return  criteria.equals(anotherCriteria.criteria);
+        return criteria.equals(anotherCriteria.criteria);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Criteria {
         StringBuilder builder = new StringBuilder();
         builder.append(groupSearchName);
         builder.append(" : ");
-        for (Map.Entry<String, Object> s: criteria.entrySet()) {
+        for (Map.Entry<String, Object> s : criteria.entrySet()) {
             builder
                     .append(s.getKey().toUpperCase())
                     .append("=")

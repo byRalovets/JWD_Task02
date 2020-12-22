@@ -1,6 +1,6 @@
 package by.ralovets.epamcourse.service.validation;
 
-import by.ralovets.epamcourse.entity.criteria.Criteria;
+import by.ralovets.epamcourse.entity.appliance.criteria.Criteria;
 
 public class Validator {
 
